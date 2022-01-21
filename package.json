@@ -1,0 +1,32 @@
+{
+  "name": "clinpaysdirectory",
+  "version": "0.0.1",
+  "description": "test de CRUD sobre registros directorio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosmorenoaguilera/clinpaysdirectory.git"
+  },
+  "keywords": [
+    "test",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "carlos moreno aguilera",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/carlosmorenoaguilera/clinpaysdirectory/issues"
+  },
+  "homepage": "https://github.com/carlosmorenoaguilera/clinpaysdirectory#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
