@@ -2,6 +2,7 @@ const express = require('express');
 const router =  express.Router();
 const bodyParser = require('body-parser');
 const response = require('./response');
+
 //------------------- init server config ----------------------//
 
 var app = express();
