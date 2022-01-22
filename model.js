@@ -1,18 +1,19 @@
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const clientSchema  = new Schema({
+const clientSchema = new Schema({
     FirstName: {
         type: String,
-        required:  true
+        required: true
     },
     LastName: {
         type: String,
-        required:  true
+        required: true
     },
     PhoneNumber: {
         type: String,
-        required:  true
+        required: true,
+        unique: true
     }
 });
 

@@ -12,8 +12,8 @@ console.log("Base de datos conectada con exito");
 
 
 function getAllClients() {
-    return new Promise(async (resolve, reject) => {
-        const result = await Model.find({}).lean().exec(function (e, d) {
+    return new Promise(async(resolve, reject) => {
+        const result = await Model.find({}).lean().exec(function(e, d) {
             if (e) {
                 reject(e);
             }
@@ -25,7 +25,7 @@ function getAllClients() {
 function addClient(client) {
     return new Promise((resolve, reject) => {
         const newClient = new Model(client);
-        const queryResult = newClient.save(function (err, data) {
+        const queryResult = newClient.save(function(err, data) {
             if (err) {
                 reject(err);
             }
@@ -36,7 +36,7 @@ function addClient(client) {
 
 function getClientByPhoneNumber(phone) {
     return new Promise((resolve, reject) => {
-        const result = Model.exists({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function (error, data) {
+        const result = Model.exists({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function(error, data) {
             if (error) {
                 reject(error);
             }
@@ -48,7 +48,7 @@ function getClientByPhoneNumber(phone) {
 
 function getClientById(id) {
     return new Promise((resolve, reject) => {
-        const result = Model.findById(id, function (error, data) {
+        const result = Model.findById(id, function(error, data) {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -60,7 +60,7 @@ function getClientById(id) {
 
 function updateById(client) {
     return new Promise((resolve, reject) => {
-        const clientRecord = Model.findByIdAndUpdate(client.id, client, function (err, data) {
+        const clientRecord = Model.findByIdAndUpdate(client.id, client, function(err, data) {
             if (err) {
                 reject(err);
             }
@@ -70,9 +70,9 @@ function updateById(client) {
 }
 
 
-function deleteById(id){
+function deleteById(id) {
     return new Promise((resolve, reject) => {
-        const result = Model.findByIdAndRemove(id, function (error, data) {
+        const result = Model.findByIdAndRemove(id, function(error, data) {
             if (error) {
                 console.log(error);
                 reject(error);
@@ -88,5 +88,6 @@ module.exports = {
     getClientByPhoneNumber: getClientByPhoneNumber,
     updateById: updateById,
     getClientById: getClientById,
-    deleteById:deleteById
+    deleteById: deleteById,
+    dbase: dbase
 }
