@@ -1,4 +1,4 @@
-# clinpaysdirectory
+# clinpays directory
 
 
 ## La aplicación deberá realizar las siguientes actividades:
