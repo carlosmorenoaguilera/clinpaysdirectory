@@ -35,8 +35,8 @@ function addClient(client) {
 }
 
 function getClientByPhoneNumber(phone) {
-    return new Promise(async (resolve, reject) => {
-        const result = await Model.exists({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function (error, data) {
+    return new Promise((resolve, reject) => {
+        const result = Model.exists({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function (error, data) {
             if (error) {
                 reject(error);
             }

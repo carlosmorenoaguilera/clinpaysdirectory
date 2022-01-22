@@ -3,17 +3,17 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const response = require('./response');
 const clientStore = require('./storage');
+const middleware = require('./middleware');
 //------------------- init server config ----------------------//
 
 var app = express();
 app.use(bodyParser.json());
 app.use(router);
-
 // -----------------------------------------------------------//
 
+
 router.get('/', function (req, res) {
-  const clients = clientStore.getAllClients().then((data) => {
-    console.log(data)
+  const clients = clientStore.getAllClients().then((data) => {   
     res.send(data);
   })
     .catch(e => {
@@ -31,7 +31,9 @@ router.get('/id/:id', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  const clientBody = req.body;
+  const clientBody = req.body; 
+  middleware.clientValidation(clientBody);
+ 
   if (!clientBody.FirstName || !clientBody.LastName || !clientBody.PhoneNumber) {
     response.failed(req, res, "Error en parametros", 400)
   }
@@ -66,8 +68,6 @@ router.delete('/id/:id', function (req, res) {
 
 });
 
-
-
 router.get('/phone/:phone', function (req, res) {
   const client = clientStore.getClientByPhoneNumber(req.params.phone).then((data) => {
     response.success(req, res, data, 200);
@@ -77,12 +77,16 @@ router.get('/phone/:phone', function (req, res) {
 
 });
 
-
-
 //---Mantener como ultima ruta para escapar 404 -----------//
-app.get('*', function (req, res) {
+app.get('*', (function (req, res) {
   response.notfound(req, res, "not found", 404);
+}));
+
+app.use((err, req, res, next) => {
+response.failed(req,res,err.message,400);
 });
+
+
 //------------------- start server  ----------------------//
 
 app.listen(3001);
