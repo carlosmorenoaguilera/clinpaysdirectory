@@ -1,7 +1,7 @@
 const mongoose =  require('mongoose');
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
-const directorySchema  = new Schema({
+const clientSchema  = new Schema({
     FirstName: {
         type: String,
         required:  true
@@ -16,6 +16,5 @@ const directorySchema  = new Schema({
     }
 });
 
-const model = mongoose.model("Directory", directorySchema);
-
+const model = mongoose.model("clients", clientSchema);
 module.exports = model;
