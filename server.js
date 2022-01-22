@@ -3,22 +3,14 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const response = require("./response");
 const clientStore = require("./storage");
+const middleware = require("./middleware");
+
 //------------------- init server config ----------------------//
 
 var app = express();
 app.use(bodyParser.json());
 app.use(router);
 // -----------------------------------------------------------//
-
-function wrapAsync(wrappedRoute) {
-
-    return function(req, res, next) {
-
-        wrappedRoute(req, res, next).catch(next);
-
-    };
-
-}
 
 
 router.get("/", function(req, res) {
@@ -46,7 +38,11 @@ router.get("/id/:id", function(req, res) {
 router.post("/", function(req, res, next) {
 
     const clientBody = req.body;
-
+    const validations = middleware.clientValidation(clientBody);
+    console.log(validations)
+    if (typeof validations === 'error') {
+        next();
+    }
 
     if (!clientBody.FirstName ||
         !clientBody.LastName ||
@@ -54,7 +50,6 @@ router.post("/", function(req, res, next) {
     ) {
         response.failed(req, res, "Error en parametros", 400);
     }
-    // try {
     const queryResult = clientStore
         .addClient(req.body)
         .then((data) => {
@@ -62,12 +57,8 @@ router.post("/", function(req, res, next) {
         })
         .catch((e) => {
             next(new Error("numero duplicado"));
-            //response.failed(req, res, "Error telefono duplicado", 400);
         });
-    // } catch (er) {
-    //     next(new Error("numero duplicado"));
 
-    // }
 });
 
 router.put("/", function(req, res) {

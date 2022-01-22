@@ -9,10 +9,10 @@
 5. Manejador de estado. 
 
 ## La parte del backend deberá cumplir con los siguientes requisitos:
-1. Rutas o endpoints de conexión (GET, PUT, POST, DELETE)
-2. Esquemas de base de datos (Colección y Modelo)
-3. Validar documentos con número telefónico duplicados
-4. Middlewares de validaciones de datos y de ID
+1. Rutas o endpoints de conexión (GET, PUT, POST, DELETE) ✅
+2. Esquemas de base de datos (Colección y Modelo) ✅
+3. Validar documentos con número telefónico duplicados ✅
+4. Middlewares de validaciones de datos y de ID 
 
 ## Como evaluación extra, es libre de realizar los siguientes puntos:
 1. Búsqueda de registro.
