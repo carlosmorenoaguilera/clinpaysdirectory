@@ -17,6 +17,14 @@ function clientValidation(client) {
     if (/.*\d.*/.test(LastName)) {
         throw new Error("LastName no puede contener numeros");
     }
+    if (!/^[A-Z]/.test(FirstName)) {
+        throw new Error("FirstName, la primera letra debe de ser mayuscula");
+
+    }
+    if (!/^[A-Z]/.test(LastName)) {
+        throw new Error("LastName, la primera letra debe de ser mayuscula");
+
+    }
 
 
 

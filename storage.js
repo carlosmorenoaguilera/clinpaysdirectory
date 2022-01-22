@@ -36,11 +36,14 @@ function addClient(client) {
 
 function getClientByPhoneNumber(phone) {
     return new Promise((resolve, reject) => {
-        const result = Model.exists({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function(error, data) {
+        const result = Model.find({ "PhoneNumber": { $regex: '.*' + phone + '.*' } }, function(error, data) {
             if (error) {
                 reject(error);
             }
-            resolve(data)
+            if (data.length > 1) {
+                resolve(data);
+            }
+            reject(data);
         });
     });
 }
